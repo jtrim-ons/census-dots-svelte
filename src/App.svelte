@@ -15,6 +15,9 @@
     'perc': [],
   };
 
+  // TODO: consider making sure centroids load before data, or something like that
+  let centroidsAdded = false;
+
   let map;
   let selectorValue;
   let units;
@@ -23,7 +26,6 @@
   let spinnerDisplayStyle = "flex";
 
   // DOM elements
-  const legend = document.getElementById('legend');
   // TODO: un-comment postcode search
   //const form = document.getElementById('form');
   const postcode = document.getElementById('postcode');
@@ -124,7 +126,7 @@
 
   // Function to set properties of map features
   function setProperties(dots) {
-    console.log(data.values.E00115816);
+    //console.log(data.values.E00115816);
     for (let dot of dots) {
       let code = dot.substring(0, 9);
       let num = +dot.substring(9);
@@ -136,7 +138,8 @@
         id: dot
       }, { color });
     }
-    if (map.isSourceLoaded('centroids')) {
+    // TODO: make sure it's okay to 
+    if (centroidsAdded && map.isSourceLoaded('centroids')) {
       updateLegend();
     }
   }
@@ -160,7 +163,7 @@
       }
       setProperties(newdots);
       let endTime = performance.now();
-      console.log(endTime - startTime, "ms elapsed");
+      //console.log(endTime - startTime, "ms elapsed");
     }
   }
 
@@ -209,6 +212,7 @@
       console.log("json2geo time", t2 - t1);
       console.log(geojson);
       map.addSource('centroids', {data: geojson, ...config.centroidsSourceConfig});
+      centroidsAdded = true;
       map.addLayer(config.centroidsLayerConfig);
     })
   }
@@ -361,10 +365,4 @@
   </div>
 </div>
 <Map bind:this={map} config={config.mapConfig}>
-	<MapMarker lon={-1.2471735} lat={50.8686254124} label="Svelte Body Shaping"/>
-	<MapMarker lon={-1.2471735} lat={50.8696254129} label="Svelte Barbershop & Essentials"/>
-	<MapMarker lon={-1.2471735} lat={50.860625412} label="Svelte Waxing Studio"/>
-	<MapMarker lon={-1.2471735} lat={50.861625412} label="Svelte 30 Nutritional Consultants"/>
-	<MapMarker lon={-1.2471735} lat={50.862625412} label="Svelte Brands LLC"/>
-	<MapMarker lon={-1.2471735} lat={50.863625412} label="Svelte Medical Systems"/>
 </Map>
