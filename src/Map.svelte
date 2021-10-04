@@ -43,15 +43,13 @@
   // Populate the popup and set its coordinates
   // based on the feature found.
   export function populatePopup(data, hoveredId, colours, lngLat) {
-    let text = '<strong>Output area ' + hoveredId + '</strong>';
+    let popupHtml = `<strong>Output area ${hoveredId}</strong>`;
     data.headers.forEach(function(header, i) {
-      text += '<br><span class="dot mr-1" style="background-color:';
-      text +=  colours[i];
-      text += ';"></span>' + header + ': ' + data.values[hoveredId].counts[i];
+      popupHtml += `<br><span class="dot mr-1" style="background-color:${colours[i]}"></span>${header.name}: ${data.values[hoveredId].counts[i]}`;
     });
     popup
       .setLngLat(lngLat)
-      .setHTML(text)
+      .setHTML(popupHtml)
       .addTo(map);
   }
 

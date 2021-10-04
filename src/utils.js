@@ -10,7 +10,7 @@ export function tsv2json(string) {
   let array = string.split('\n');
   let headers = array[0].split(',');
   headers.shift();
-  json.headers = headers;
+  json.headers = headers.map(d => ({name: d, checked: true}));
   json.totals = new Array(headers.length).fill(0);
   for (var i = 1; i < array.length; i++) {
     let row = array[i].split(',');

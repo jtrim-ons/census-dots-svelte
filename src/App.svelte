@@ -6,8 +6,6 @@
   import * as config from './config.js';
   import { tsv2json, json2geo, peoplePerDot, calculateVisiblePercentages } from './utils.js';
 
-  let legendInnerHtml = ""; // TODO: do this in a more Svelte-y way
-
   var data = {
     'headers': [],
     'values': {},
@@ -61,7 +59,8 @@
   function getColor(value, breaks) {
     for (let i=0; i<breaks.length; i++) {
       if (value <= breaks[i]) {
-        if (/*FIXME*/ true || document.getElementById('legend' + i).checked) {
+        //if (/*FIXME*/ true || document.getElementById('legend' + i).checked) {
+        if (data.headers[i].checked) {
           return config.colours[i];
         } else {
           return null;
@@ -186,12 +185,7 @@
 
   // Function to add legend scale
   function genLegend(data) {
-    let html = '';
-    for (let i=0; i<data.headers.length; i++) {
-      html += '<p class="mb-1"><span class="dot mr-1" style="background-color:' + config.colours[i] + ';"></span><input type="checkbox" id="legend' + i + '" checked /> <small>' + data.headers[i] + ' <span id="perc' + i + '"></span> <span class="text-secondary">(' + data.perc[i] + '%)</span></small></p>';
-    }
-    legendInnerHtml = html;
-// FIXME: uncomment the following lines and make them work
+// FIXME: make the following work (maybe in the Svelte HTML?)
 //    for (let i=0; i<data.headers.length; i++) {
 //      let element = document.getElementById('legend' + i);
 //      element.onclick = () => {
@@ -353,7 +347,19 @@
                   </select>
         </div>
       </div>
-      <div id="legend">{@html legendInnerHtml}</div>
+      <div id="legend"> 
+        {#each data.headers as h, i}
+          <p class="mb-1">
+            <span class="dot mr-1" style="background-color: {config.colours[i]}"></span>
+            <input type="checkbox" bind:checked={h.checked} on:change={() => {clearDots(); updateDots();}}/>
+            <small>
+              {h.name}
+              <span id="perc{i}"></span>
+              <span class="text-secondary">({data.perc[i]}%)</span>
+            </small>
+          </p>
+        {/each}
+      </div>
       <p class="mt-2 mb-0">1 dot = <span id="count">{count}</span> <span id="units">{units}</span></p>
       <p class="mb-0"><small>% in this area <span class="text-secondary">(% national avg)</span></small></p>
     </div>

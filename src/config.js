@@ -98,9 +98,9 @@ export const boundsLinesLayerConfig = {
       'case',
       ['boolean', ['feature-state', 'hover'], false],
       1,
-      0
+      1
     ],
-    "line-color": "rgb(255, 255, 255)",
+    "line-color": "rgb(255, 0, 0)",
     "line-width": 1
   }
 };
