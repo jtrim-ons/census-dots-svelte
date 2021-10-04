@@ -100,7 +100,7 @@ export const boundsLinesLayerConfig = {
       1,
       1
     ],
-    "line-color": "rgb(255, 0, 0)",
+    "line-color": "rgb(255, 255, 255)",
     "line-width": 1
   }
 };
