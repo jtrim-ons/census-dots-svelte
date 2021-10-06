@@ -78,12 +78,14 @@
     // Variable for highlighting areas
     let hoveredId = null;
 
-    map.addSource('dots', config.dotsSourceConfig);
+    map.addSource('newdots', config.newDotsSourceConfig);
+//    map.addSource('dots', config.dotsSourceConfig);
     map.addSource('bounds', config.boundsSourceConfig);
 
-    map.addLayer(config.dotsLayerConfig, 'boundary_country');
+//    map.addLayer(config.dotsLayerConfig, 'boundary_country');
     map.addLayer(config.boundsLayerConfig, 'boundary_country');
     map.addLayer(config.boundsLinesLayerConfig, 'boundary_country');
+    map.addLayer(config.newDotsLayerConfig, 'boundary_country');
 
     // Show data on hover
     map.on('mousemove', 'bounds', function (e) {
@@ -143,8 +145,32 @@
     }
   }
 
+  function setDotColours() {
+    let  circleColour = ["match", ["get", "fill"]];
+    let filter = ["in", ["get", "fill"], ["literal", []]];
+    let checkedCount = 0;
+    for (let i=0; i<data.headers.length; i++) {
+        circleColour.push(data.headers[i].name);
+        circleColour.push(config.colours[i]);
+        if (data.headers[i].checked) {
+            filter[filter.length-1][1].push(data.headers[i].name);
+            ++checkedCount;
+        }
+    }
+    circleColour.push("#000000");
+    map.setPaintProperty('newdots', 'circle-color', circleColour);
+    if (checkedCount === data.headers.length) {
+        // All are selected, so we don't need a filter
+        map.setFilter('newdots', null);
+    } else {
+        map.setFilter('newdots', filter);
+    }
+  }
+
   // Function to check if new dots have been loaded
   function updateDots() {
+    setDotColours();
+    return; // FIXME: this is just for trying out values baked into tiles
     let startTime = performance.now();
     if (data.totals[0]) {
       let features = map.querySourceFeatures('dots', { 'sourceLayer': 'dots' });
@@ -177,6 +203,7 @@
 
   // Function to clear map dots styling
   function clearDots() {
+    return; // FIXME: this is just for trying out values baked into tiles
     map.removeFeatureState({
       source: 'dots',
       sourceLayer: 'dots'
@@ -266,7 +293,7 @@
 
 <style>
   body {
-    background-color: #222222;
+    background-color: #ffffff;
   }
 
   .h4 {
@@ -293,8 +320,8 @@
   }
 
   #search {
-    background-color: #222222dd;
-    color: #eeeeee;
+    background-color: #ffffffee;
+    color: #222222;
     pointer-events: all;
   }
 

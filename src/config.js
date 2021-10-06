@@ -1,4 +1,4 @@
-export const mapboxgl_access_token = 'pk.eyJ1IjoiYXJrYmFyY2xheSIsImEiOiJjamdxeDF3ZXMzN2IyMnFyd3EwdGcwMDVxIn0.P2bkpp8HGNeY3-FOsxXVvA';
+export const mapboxgl_access_token = 'pk.eyJ1IjoiamFtZXN0cmltYmxlIiwiYSI6InN2ZWdyRXcifQ.DUYTX94mn7OPzjO-ocG04Q';
 
 // API url
 export const url = [
@@ -10,12 +10,15 @@ export const api = 'https://pmd3-production-drafter-onsgeo.publishmydata.com/v1/
 
 // Colors and options
 export const colours = [
-  'rgb(43, 175, 219)',
-  'rgb(234, 56, 179)',
-  'rgb(43, 225, 179)',
-  'rgb(232, 241, 47)',
-  'rgb(247, 93, 43)'
-];
+    "#6fb5d9",/*"#1f77b4",*/ "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
+]; // d3.schemeCategory10, with first colour changed
+//export const colours = [
+//  'rgb(43, 175, 219)',
+//  'rgb(234, 56, 179)',
+//  'rgb(43, 225, 179)',
+//  'rgb(232, 241, 47)',
+//  'rgb(247, 93, 43)'
+//];
 
 export const options = [
   {niceName: 'Ethnicity', varName: 'ethnicity'},
@@ -34,12 +37,22 @@ export const unitise = {
 };
 
 export const mapConfig = {
-  style: './data/style-omt.json',
+  style: './data/style-omt-modified.json',
   center: [-1.2471735, 50.8625412],
-  zoom: 12,
-  maxZoom: 14,
-  minZoom: 8
+  zoom: 5,
+  maxZoom: 12,
+  minZoom: 4
 }
+
+//TODO
+export const newDotsSourceConfig = {
+  "type": 'vector',
+  "url": "mapbox://jamestrimble.5isnyyn3?ab=cd&fresh=true",   // FIXME: don't use fresh=true in production
+  "promoteId": { "censusdots": "id" },
+  "buffer": 0,
+  "maxzoom": 13,
+  "minzoom": 0
+};
 
 export const dotsSourceConfig = {
   "type": 'vector',
@@ -58,6 +71,20 @@ export const boundsSourceConfig = {
   "maxzoom": 14
 };
 
+export const newDotsLayerConfig = {
+  id: 'newdots',
+  type: 'circle',
+  source: 'newdots',
+  'source-layer': 'censusdots',
+  paint: {
+    'circle-color':
+      ["get", "fill"],
+    'circle-radius':
+      ['interpolate', ['linear'], ['zoom'], 4, .4, 8, 1, 12, 1.7, 14, 2.5],
+    'circle-opacity': .8
+  }
+};
+
 export const dotsLayerConfig = {
   id: 'dots-join',
   type: 'circle',
@@ -71,8 +98,8 @@ export const dotsLayerConfig = {
         'rgba(0, 0, 0, 0)'
       ],
     'circle-radius':
-      ['interpolate', ['linear'], ['zoom'], 8, 1, 12, 1.5, 14, 2],
-    'circle-opacity': 1
+      ['interpolate', ['linear'], ['zoom'], 2, .5, 8, 2, 12, 2, 14, 3],
+    'circle-opacity': .8
   }
 };
 

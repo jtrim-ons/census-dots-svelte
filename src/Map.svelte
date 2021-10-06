@@ -30,6 +30,8 @@
   export const removeFeatureState = (feature, key) => map.removeFeatureState(feature, key);
   export const isSourceLoaded = (id) => map.isSourceLoaded(id);
   export const queryRenderedFeatures = (geometry, options) => map.queryRenderedFeatures(geometry, options);
+  export const setPaintProperty = (layerId, name, value) => map.setPaintProperty(layerId, name, value);
+  export const setFilter = (layerId, filter) => map.setFilter(layerId, filter);
 
   export function on(type, layerId, listener) {
     if (map)
