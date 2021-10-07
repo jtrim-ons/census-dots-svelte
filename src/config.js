@@ -40,7 +40,7 @@ export const mapConfig = {
   style: './data/style-omt-modified.json',
   center: [-1.2471735, 50.8625412],
   zoom: 5,
-  maxZoom: 12,
+  maxZoom: 13,
   minZoom: 4
 }
 
