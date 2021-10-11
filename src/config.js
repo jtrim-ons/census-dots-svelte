@@ -10,8 +10,8 @@ export const api = 'https://pmd3-production-drafter-onsgeo.publishmydata.com/v1/
 
 // Colors and options
 export const colours = [
-    "#6fb5d9",/*"#1f77b4",*/ "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
-]; // d3.schemeCategory10, with first colour changed
+    "#86d1f7",/*"#1f77b4",*/ "#ff7f0e", "#3453a4",/*"#2ca02c",*/ "#d62728", "#81d693", /*"#9467bd",*/ "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
+]; // d3.schemeCategory10, with some colours changed to be similar to CNN map
 //export const colours = [
 //  'rgb(43, 175, 219)',
 //  'rgb(234, 56, 179)',
@@ -80,7 +80,8 @@ export const newDotsLayerConfig = {
     'circle-color':
       ["get", "fill"],
     'circle-radius':
-      ['interpolate', ['linear'], ['zoom'], 4, .4, 8, 1, 12, 1.7, 14, 2.5],
+      ['interpolate', ['linear'], ['zoom'], 4, .4, 8, 1.2, 12, 1.7, 14, 2.2],
+      //['interpolate', ['linear'], ['zoom'], 4, .2, 7, 1, 8, 1.4, 8.999999, 2, 9, 1.4, 9.999999, 2, 10, 1.4, 10.999999, 2, 11, 1.4, 11.999999, 2, 12, 1.7, 14, 2.5],
     'circle-opacity': .8
   }
 };
