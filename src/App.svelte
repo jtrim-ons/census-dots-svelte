@@ -146,8 +146,8 @@
   }
 
   function setDotColours() {
-    let  circleColour = ["match", ["get", "fill"]];
-    let filter = ["in", ["get", "fill"], ["literal", []]];
+    let  circleColour = ["match", ["get", "category"]];
+    let filter = ["in", ["get", "category"], ["literal", []]];
     let checkedCount = 0;
     for (let i=0; i<data.headers.length; i++) {
         circleColour.push(data.headers[i].name);

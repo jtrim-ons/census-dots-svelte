@@ -78,9 +78,9 @@ export const newDotsLayerConfig = {
   'source-layer': 'censusdots',
   paint: {
     'circle-color':
-      ["get", "fill"],
+      ["get", "category"],
     'circle-radius':
-      ['interpolate', ['linear'], ['zoom'], 4, .4, 8, 1.2, 12, 1.7, 14, 2.2],
+      ['interpolate', ['linear'], ['zoom'], 4, .3, 8, 1.1, 12, 1.7, 14, 2.2],
       //['interpolate', ['linear'], ['zoom'], 4, .2, 7, 1, 8, 1.4, 8.999999, 2, 9, 1.4, 9.999999, 2, 10, 1.4, 10.999999, 2, 11, 1.4, 11.999999, 2, 12, 1.7, 14, 2.5],
     'circle-opacity': .8
   }

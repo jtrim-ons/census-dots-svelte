@@ -315,7 +315,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "rgb(234, 234, 234)",
@@ -338,7 +338,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "hsl(0, 0%, 88%)",
@@ -361,7 +361,7 @@
       "layout": {
         "line-cap": "butt",
         "line-join": "miter",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "rgb(213, 213, 213)",
@@ -384,7 +384,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "#fff",
@@ -406,7 +406,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {"line-color": "hsla(0, 0%, 85%, 0.69)", "line-width": 2}
     },
@@ -429,7 +429,7 @@
       "layout": {
         "line-cap": "butt",
         "line-join": "miter",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "rgb(213, 213, 213)",
@@ -457,7 +457,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": {
@@ -482,7 +482,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "hsla(0, 0%, 85%, 0.53)",
@@ -501,7 +501,7 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "class", "transit"], ["!in", "brunnel", "tunnel"]]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {"line-color": "#dddddd", "line-width": 3}
     },
     {
@@ -516,7 +516,7 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "class", "transit"], ["!in", "brunnel", "tunnel"]]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {
         "line-color": "#fafafa",
         "line-width": 2,
@@ -535,7 +535,7 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "class", "rail"], ["has", "service"]]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {"line-color": "#dddddd", "line-width": 3}
     },
     {
@@ -551,7 +551,7 @@
         ["==", "class", "rail"],
         ["has", "service"]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {
         "line-color": "#fafafa",
         "line-width": 2,
@@ -570,7 +570,7 @@
         ["==", "$type", "LineString"],
         ["all", ["!has", "service"], ["==", "class", "rail"]]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {
         "line-color": "#dddddd",
         "line-width": {"base": 1.3, "stops": [[16, 3], [20, 7]]}
@@ -588,7 +588,7 @@
         ["==", "$type", "LineString"],
         ["all", ["!has", "service"], ["==", "class", "rail"]]
       ],
-      "layout": {"visibility": "visible", "line-join": "round"},
+      "layout": {"visibility": "none", "line-join": "round"},
       "paint": {
         "line-color": "#fafafa",
         "line-width": {"base": 1.3, "stops": [[16, 2], [20, 6]]},
@@ -610,7 +610,7 @@
       "layout": {
         "line-cap": "butt",
         "line-join": "miter",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "rgb(213, 213, 213)",
@@ -634,7 +634,7 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": {
@@ -662,7 +662,7 @@
         "symbol-spacing": 350,
         "text-font": ["Noto Sans Regular"],
         "symbol-placement": "line",
-        "visibility": "visible",
+        "visibility": "none",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "viewport",
         "text-field": "{name:latin} {name:nonlatin}"
@@ -691,7 +691,7 @@
         "symbol-spacing": 350,
         "text-font": ["Noto Sans Regular"],
         "symbol-placement": "line",
-        "visibility": "visible",
+        "visibility": "none",
         "text-rotation-alignment": "viewport",
         "text-pitch-alignment": "viewport",
         "text-field": "{ref}"
