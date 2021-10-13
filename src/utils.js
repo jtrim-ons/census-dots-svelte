@@ -62,12 +62,14 @@ export function json2geo(json) {
 
 export function peoplePerDot(zoom) {
   //FIXME
-  if (zoom >= 13) return "10?";
-  if (zoom >= 12) return "20?";
-  if (zoom >= 11) return "40?";
-  if (zoom >= 10) return "80?";
-  if (zoom >= 9) return "160?";
-  return "320?";
+  if (zoom >= 13) return "10";
+  if (zoom >= 12) return "20";
+  if (zoom >= 11) return "40";
+  if (zoom >= 10) return "80";
+  if (zoom >= 9) return "160";
+  if (zoom >= 8) return "320";
+  if (zoom >= 7) return "640";
+  return "1280";
 }
 
 function toRoundedPercentages(counts) {

@@ -146,8 +146,8 @@
   }
 
   function setDotColours() {
-    let  circleColour = ["match", ["get", "category"]];
-    let filter = ["in", ["get", "category"], ["literal", []]];
+    let  circleColour = ["match", ["get", selectorValue]];
+    let filter = ["in", ["get", selectorValue], ["literal", []]];
     let checkedCount = 0;
     for (let i=0; i<data.headers.length; i++) {
         circleColour.push(data.headers[i].name);
@@ -160,8 +160,8 @@
     circleColour.push("#000000");
     map.setPaintProperty('newdots', 'circle-color', circleColour);
     if (checkedCount === data.headers.length) {
-        // All are selected, so we don't need a filter
-        map.setFilter('newdots', null);
+        // All are selected, so we just need to filter out "_none_" values
+        map.setFilter('newdots', ["!=", ["get", selectorValue], "none"]);
     } else {
         map.setFilter('newdots', filter);
     }
