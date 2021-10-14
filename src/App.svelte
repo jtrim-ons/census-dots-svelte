@@ -320,6 +320,10 @@
     margin-right: .25rem !important;
   }
 
+  :global(.mt-1) {
+    margin-top: .25rem !important;
+  }
+
   :global(.mb-1) {
     margin-bottom: .25rem !important;
   }
@@ -396,7 +400,7 @@
       </div>
       <div id="legend"> 
         {#each data.headers as h, i}
-          <p class="mb-1">
+          <p class="mb-1 mt-1">
             <span class="dot mr-1" style="background-color: {config.colours[i]}"></span>
             <input type="checkbox" bind:checked={h.checked} on:change={() => {clearDots(); updateDots();}}/>
             <small>
