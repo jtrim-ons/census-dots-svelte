@@ -11,6 +11,7 @@
     'values': {},
     'totals': [],
     'perc': [],
+    'localPerc': []
   };
 
   // TODO: consider making sure centroids load before data, or something like that
@@ -180,6 +181,10 @@
   // Function to check if new dots have been loaded
   function updateDots() {
     setDotColours();
+    // TODO: fix the next bit?
+    if (centroidsAdded && map.isSourceLoaded('centroids')) {
+      updateLegend();
+    }
     return; // FIXME: this is just for trying out values baked into tiles
     let startTime = performance.now();
     if (data.totals[0]) {
@@ -208,7 +213,8 @@
     let ids = features.map(feature => feature.id);
     let perc = calculateVisiblePercentages(data, ids);
     for (let i=0; i<perc.length; i++)
-      document.getElementById('perc' + i).innerHTML = perc[i] + '%';
+      data.localPerc[i] = perc[i] + '%';
+//      document.getElementById('perc' + i).innerHTML = perc[i] + '%';
   }
 
   // Function to clear map dots styling
@@ -395,7 +401,7 @@
             <input type="checkbox" bind:checked={h.checked} on:change={() => {clearDots(); updateDots();}}/>
             <small>
               {h.name}
-              <span id="perc{i}"></span>
+              <span>{data.localPerc[i]}</span>
               <span class="text-secondary">({data.perc[i]}%)</span>
             </small>
           </p>

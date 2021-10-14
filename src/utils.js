@@ -5,6 +5,7 @@ export function tsv2json(string) {
     'values': {},
     'totals': [],
     'perc': [],
+    'localPerc': []
   };
   string = string.replace(/['"]+/g, '');
   let array = string.split('\n');
@@ -31,6 +32,7 @@ export function tsv2json(string) {
   let sum = json.totals.reduce((a, b) => a + b);
   for (let tot in json.totals) {
     json.perc.push(Math.round(100 * (json.totals[tot] / sum)));
+    json.localPerc.push("");
   }
   return json;
 }
