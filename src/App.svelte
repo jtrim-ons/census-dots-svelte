@@ -55,22 +55,22 @@
       });
   }
 
-  // Function to get color for a value based on breaks
-  function getColor(value, breaks) {
-    for (let i=0; i<breaks.length; i++) {
-      if (value <= breaks[i]) {
-        //if (/*FIXME*/ true || document.getElementById('legend' + i).checked) {
-        if (data.headers[i].checked) {
-          return config.colours[i];
-        } else {
-          return null;
-        }
-      }
-    }
-    console.log(value, breaks);
-    console.warn("Reached a unexpected place in getColor()");
-    return null;
-  }
+//  // Function to get color for a value based on breaks
+//  function getColor(value, breaks) {
+//    for (let i=0; i<breaks.length; i++) {
+//      if (value <= breaks[i]) {
+//        //if (/*FIXME*/ true || document.getElementById('legend' + i).checked) {
+//        if (data.headers[i].checked) {
+//          return config.colours[i];
+//        } else {
+//          return null;
+//        }
+//      }
+//    }
+//    console.log(value, breaks);
+//    console.warn("Reached a unexpected place in getColor()");
+//    return null;
+//  }
 
   // Function to add layers to map
   function makeLayers() {

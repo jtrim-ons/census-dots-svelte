@@ -17,17 +17,14 @@ export function tsv2json(string) {
     if (row[1]) {
       let tot = 0;
       let counts = [];
-      let breaks = [];
       for (let j = 1; j < row.length; j++) {
         let val = +row[j];
         tot += val;
         counts.push(val);
-        breaks.push(Math.round(tot / 10));  // TODO: maybe improve breaks
         json.totals[j - 1] += val;
       }
       json.values[row[0]] = {
-        'counts': counts,
-        'breaks': breaks
+        'counts': counts
       }
     }
   }
