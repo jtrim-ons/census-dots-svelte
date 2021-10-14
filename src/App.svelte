@@ -365,7 +365,7 @@
   <div class="row">
     <div id="search" class="col-sm-7 col-md-5 col-lg-4 col-xl-3 p-3 mr-auto">
       <p class="font-weight-bold h4">Census Dot Density, 2011</p>
-      <form id="form" class="mb-2">
+      <!-- <form id="form" class="mb-2">
         <div class="form-row my-2">
           <div class="col-9">
             <input type="text" id="postcode" class="form-control form-control-sm" placeholder="Enter postcode..." />
@@ -374,7 +374,7 @@
             <button type="submit" class="btn btn-info btn-sm btn-block">Go!</button>
           </div>
         </div>
-      </form>
+      </form> -->
       <div class="form-row mb-2">
         <div class="col">
           <label>
