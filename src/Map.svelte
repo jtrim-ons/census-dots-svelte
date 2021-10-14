@@ -21,6 +21,7 @@
                        // map is loaded
 
   export const addSource = (id, source) => map.addSource(id, source);
+  export const getSource = (source) => map.getSource(source);
   export const addLayer = (layer, beforeId) => map.addLayer(layer, beforeId);
   export const areTilesLoaded = () => map.areTilesLoaded();
   export const getZoom = () => map.getZoom();

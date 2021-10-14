@@ -16,6 +16,16 @@
   // TODO: consider making sure centroids load before data, or something like that
   let centroidsAdded = false;
 
+  let tmpDotsChooser = false;
+  $: {
+    try {
+         map.getSource('newdots').setUrl(tmpDotsChooser ?
+             "mapbox://jamestrimble.9ig5nduq?ab=cd&fresh=true" :
+             "mapbox://jamestrimble.5isnyyn3?ab=cd&fresh=true");
+    } catch {
+    }
+  }
+
   let map;
   let selectorValue;
   let units;
@@ -361,6 +371,10 @@
       </form>
       <div class="form-row mb-2">
         <div class="col">
+          <label>
+            <input type=checkbox bind:checked={tmpDotsChooser}>
+            Random dot placement
+          </label>
           <select class="form-control form-control-sm"
                   bind:value={selectorValue}
                   on:change={() => getData(selectorValue)}>
