@@ -1,3 +1,13 @@
+import * as config from './config.js';
+
+export function getUnits(v) {
+	return config.options.filter(d => d.varName === v)[0].units;
+}
+
+export function getTileset(v) {
+	return config.options.filter(d => d.varName === v)[0].tileset;
+}
+
 // Function to turn CSV (string) into array of objects
 export function tsv2json(string) {
   let json = {

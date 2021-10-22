@@ -4,7 +4,7 @@
 	import Map from './Map.svelte';
 	import MapMarker from './MapMarker.svelte';
   import * as config from './config.js';
-  import { tsv2json, json2geo, peoplePerDot, calculateVisiblePercentages } from './utils.js';
+  import { tsv2json, json2geo, peoplePerDot, calculateVisiblePercentages, getUnits, getTileset } from './utils.js';
 
   var data = {
     'headers': [],
@@ -20,9 +20,10 @@
   let tmpDotsChooser = false;
   $: {
     try {
-         map.getSource('newdots').setUrl(tmpDotsChooser ?
-             "mapbox://jamestrimble.9ig5nduq?ab=cd&fresh=true" :
-             "mapbox://jamestrimble.5isnyyn3?ab=cd&fresh=true");
+        selectorValue && !console.log('hi!') && map.getSource('newdots').setUrl(`mapbox://jamestrimble.${getTileset(selectorValue)}?ab=cd&fresh=true`);
+        // map.getSource('newdots').setUrl(tmpDotsChooser ?
+        //     "mapbox://jamestrimble.9ig5nduq?ab=cd&fresh=true" :
+        //     "mapbox://jamestrimble.5isnyyn3?ab=cd&fresh=true");
     } catch {
     }
   }
@@ -42,10 +43,11 @@
   // TODO: possibly re-add feature that caches data using `store` variable
 
   function showData(data, dim) {
+    console.log('showData()');
     genLegend(data);
     clearDots();
     updateDots();
-    units = config.unitise[dim];
+    units = getUnits(dim);
     spinnerDisplayStyle = 'none';
   }
 
@@ -90,6 +92,7 @@
     let hoveredId = null;
 
     map.addSource('newdots', config.newDotsSourceConfig);
+    map.getSource('newdots').setUrl(`mapbox://jamestrimble.${getTileset(selectorValue)}?ab=cd&fresh=true`);
 //    map.addSource('dots', config.dotsSourceConfig);
     map.addSource('bounds', config.boundsSourceConfig);
 
@@ -157,10 +160,12 @@
   }
 
   function setDotColours() {
+	console.log(getTileset(selectorValue));
     let  circleColour = ["match", ["get", selectorValue]];
     let filter = ["in", ["get", selectorValue], ["literal", []]];
     let checkedCount = 0;
     for (let i=0; i<data.headers.length; i++) {
+        console.log("* " + data.headers[i].name + ' ' + config.colours[i]);
         circleColour.push(data.headers[i].name);
         circleColour.push(config.colours[i]);
         if (data.headers[i].checked) {
@@ -168,12 +173,13 @@
             ++checkedCount;
         }
     }
-    circleColour.push("#000000");
+    circleColour.push("red");
     map.setPaintProperty('newdots', 'circle-color', circleColour);
     if (checkedCount === data.headers.length) {
         // All are selected, so we just need to filter out "_none_" values
         map.setFilter('newdots', ["!=", ["get", selectorValue], "none"]);
     } else {
+        console.log(filter);
         map.setFilter('newdots', filter);
     }
   }
@@ -298,6 +304,7 @@
     // Set up an event listener on the map.
     map.on('sourcedata', function (e) {
       if (map.areTilesLoaded()) {
+        console.log('hello!');
         updateDots();
       }
     });
@@ -381,10 +388,10 @@
       </form> -->
       <div class="form-row mb-2">
         <div class="col">
-          <label>
+          <!-- <label>
             <input type=checkbox bind:checked={tmpDotsChooser}>
             Random dot placement
-          </label>
+          </label> -->
           <select class="form-control form-control-sm"
                   bind:value={selectorValue}
                   on:change={() => getData(selectorValue)}>
